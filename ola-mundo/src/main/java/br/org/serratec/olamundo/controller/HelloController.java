@@ -27,7 +27,7 @@ public class HelloController {
     // RECURSO DE SOMA
 
     @GetMapping(value = "/soma")
-    public Double soma(@RequestParam Double num1, Double num2) {
+    public Double soma(@RequestParam Double num1, @RequestParam Double num2) {
         return num1 + num2;
     }
 
