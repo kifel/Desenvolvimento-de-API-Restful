@@ -1,4 +1,4 @@
-package br.org.serratec.olamundo.controller;
+package br.org.serratec.olamundo.controllerTest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package br.org.serratec.model;
+package br.org.serratec.olamundo.model;
 
 public class Aluno {
     private String matricula;
