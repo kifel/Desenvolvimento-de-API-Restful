@@ -19,9 +19,8 @@ Desenvolvimento de API Restful serratec
 
 O projeto está desenvolvido utilizando as seguintes tecnologias:
 
-- HTML
-- CSS
-- JavaScript
+- Java
+- Spring Boot
 
 --- 
 
