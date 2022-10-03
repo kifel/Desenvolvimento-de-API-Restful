@@ -30,12 +30,7 @@ public class AlunoController {
 
     @GetMapping("{matricula}")
     public Aluno buscar(@PathVariable String matricula) {
-        for (int i = 0; i < alunos.size(); i++) {
-            if (alunos.get(i).getMatricula().equals(matricula)) {
-                return alunos.get(i);
-            }
-        }
-        return null;
+        return alunos.stream().filter(aluno -> aluno.getMatricula().equals(matricula)).findFirst().orElse(null);
     }
 
 }
