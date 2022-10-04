@@ -3,6 +3,7 @@ package br.org.serratec.olamundo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,16 @@ public class AlunoController {
     public Aluno inserir(@RequestBody Aluno aluno) {
         alunos.add(aluno);
         return aluno;
+    }
+
+    @DeleteMapping("/delete/{matricula}")
+    public Aluno delete(@PathVariable String matricula) {
+        for (int i = 0; i < alunos.size(); i++) {
+            if (alunos.get(i).getMatricula().equals(matricula)) {
+                return alunos.remove(i);
+            }
+        }
+        return null;
     }
 
 }
