@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +33,12 @@ public class AlunoController {
     @GetMapping("{matricula}")
     public Aluno buscar(@PathVariable String matricula) {
         return alunos.stream().filter(aluno -> aluno.getMatricula().equals(matricula)).findFirst().orElse(null);
+    }
+
+    @PostMapping(value = "/cadastro")
+    public Aluno inserir(@RequestBody Aluno aluno) {
+        alunos.add(aluno);
+        return aluno;
     }
 
 }
