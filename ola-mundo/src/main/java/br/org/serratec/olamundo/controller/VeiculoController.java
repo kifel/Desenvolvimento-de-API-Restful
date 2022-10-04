@@ -4,32 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.org.serratec.olamundo.model.Veiculo;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/veiculo")
 public class VeiculoController {
 
-    private static List<Veiculo> veiculo = new ArrayList<>();
+    private static List<Veiculo> veiculos = new ArrayList<>();
 
     static {
-        veiculo.add(new Veiculo(1, "Nissan", "GTR-R34"));
-        veiculo.add(new Veiculo(2, "Silvia", "S15"));
-        veiculo.add(new Veiculo(3, "Mazda", "RX-7"));
+        veiculos.add(new Veiculo(1, "Nissan", "GTR-R34"));
+        veiculos.add(new Veiculo(2, "Silvia", "S15"));
+        veiculos.add(new Veiculo(3, "Mazda", "RX-7"));
     }
 
     @GetMapping
     public List<Veiculo> listarVeiculos() {
-        return veiculo;
+        return veiculos;
     }
 
     @GetMapping("{id}")
     public Veiculo buscar(@PathVariable Integer id) {
-        return veiculo.stream().filter(v -> v.getId().equals(id)).findFirst().orElse(null);
+        return veiculos.stream().filter(v -> v.getId().equals(id)).findFirst().orElse(null);
+    }
+
+    @PostMapping(value = "cadastro")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Veiculo create(@RequestBody Veiculo veiculo) {
+        veiculos.add(veiculo);
+        return veiculo;
     }
 
 }
