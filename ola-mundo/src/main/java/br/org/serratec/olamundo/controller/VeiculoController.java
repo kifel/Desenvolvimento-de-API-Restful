@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.org.serratec.olamundo.model.Veiculo;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +43,16 @@ public class VeiculoController {
     public Veiculo create(@RequestBody Veiculo veiculo) {
         veiculos.add(veiculo);
         return veiculo;
+    }
+
+    @DeleteMapping(value= "/delete/{id}")
+    public Veiculo delete(@PathVariable Integer id) {
+        for (int i = 0; i < veiculos.size(); i++) {
+            if (veiculos.get(i).getId().equals(id)) {
+                return veiculos.remove(i);
+            }
+        }
+        return null;
     }
 
 }
