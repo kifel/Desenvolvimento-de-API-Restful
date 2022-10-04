@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.org.serratec.olamundo.model.Veiculo;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @RestController
 @RequestMapping("/veiculo")
@@ -20,6 +22,10 @@ public class VeiculoController {
         veiculo.add(new Veiculo(3, "Mazda", "RX-7"));
     }
 
+    @GetMapping
+    public List<Veiculo> listarVeiculos() {
+        return veiculo;
+    }
     
     
 }
