@@ -12,6 +12,7 @@ import br.org.serratec.olamundo.model.Veiculo;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,6 +51,17 @@ public class VeiculoController {
         for (int i = 0; i < veiculos.size(); i++) {
             if (veiculos.get(i).getId().equals(id)) {
                 return veiculos.remove(i);
+            }
+        }
+        return null;
+    }
+
+    @PatchMapping(value = "/patch/{id}")
+    public Veiculo update(@RequestBody Veiculo veiculo, @PathVariable Integer id) {
+        for (int i = 0; i < veiculos.size(); i++) {
+            if (veiculos.get(i).getId().equals(id)) {
+                veiculos.set(i, veiculo);
+                return veiculo;
             }
         }
         return null;
