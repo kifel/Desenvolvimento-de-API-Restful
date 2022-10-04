@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.serratec.olamundo.model.Veiculo;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/veiculo")
@@ -26,6 +26,10 @@ public class VeiculoController {
     public List<Veiculo> listarVeiculos() {
         return veiculo;
     }
-    
-    
+
+    @GetMapping("{id}")
+    public Veiculo buscar(@PathVariable Integer id) {
+        return veiculo.stream().filter(v -> v.getId().equals(id)).findFirst().orElse(null);
+    }
+
 }
