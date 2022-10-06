@@ -8,8 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "Cliente", schema = "public")
@@ -25,17 +29,15 @@ public class Cliente {
     @Column(nullable = false, length = 60)
     private String nome;
 
-    @NotBlank(message = "Preencha o cpf do cliente")
-    @Size(min = 11, max = 11, message = "Tamanho do campo invalido")
+    @CPF(message = "Você inseriu um cpf não valido")
     @Column(nullable = false, length = 11)
     private String cpf;
 
-    @NotBlank(message = "Preencha o email do cliente")
-    @Size(max = 50, message = "Tamanho do campo invalido")
+    @Email(message = "Você inseriu um email não valido")
     @Column(nullable = false, length = 50)
     private String email;
 
-    @NotBlank(message = "Preencha o data de nascimento do cliente")
+    @Future(message = "Você inseriu uma data invalida")
     @Column(nullable = false, name = "data_nascimento")
     private LocalDate dataNascimento;
 

@@ -1,19 +1,22 @@
 package br.org.serratec.exception;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ErroResposta {
     private Integer status;
     private String titulo;
     private LocalDateTime dataHora;
+    private List<String> erros;
 
     public ErroResposta() {
     }
 
-    public ErroResposta(Integer status, String titulo, LocalDateTime dataHora) {
+    public ErroResposta(Integer status, String titulo, LocalDateTime dataHora, List<String> erros) {
         this.status = status;
         this.titulo = titulo;
         this.dataHora = dataHora;
+        this.erros = erros;
     }
 
     public Integer getStatus() {
@@ -40,9 +43,8 @@ public class ErroResposta {
         this.dataHora = dataHora;
     }
 
-    @Override
-    public String toString() {
-        return "ErrroResposta [status=" + status + ", titulo=" + titulo + ", dataHora=" + dataHora + "]";
+    public List<String> getErros() {
+        return erros;
     }
 
 }
