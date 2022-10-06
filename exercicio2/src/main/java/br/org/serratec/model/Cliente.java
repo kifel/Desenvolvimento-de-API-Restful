@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Cliente", schema = "public")
@@ -18,6 +19,7 @@ public class Cliente {
     @Column(name = "id_cliente")
     private Long id;
 
+    @NotBlank
     @Column(nullable = false, length = 60)
     private String nome;
 

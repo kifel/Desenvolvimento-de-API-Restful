@@ -3,6 +3,8 @@ package br.org.serratec.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,13 +46,13 @@ public class ClienteController {
 
     @PostMapping(value = "/create")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Cliente create(@RequestBody Cliente cliente) {
+    public Cliente create(@Valid @RequestBody Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
     @PostMapping(value = "/createAll")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public List<Cliente> createTodos(@RequestBody List<Cliente> clientes) {
+    public List<Cliente> createTodos(@Valid @RequestBody List<Cliente> clientes) {
         return clienteRepository.saveAll(clientes);
     }
 
