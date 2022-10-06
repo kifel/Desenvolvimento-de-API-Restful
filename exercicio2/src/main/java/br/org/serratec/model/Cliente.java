@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Cliente", schema = "public")
@@ -19,16 +20,22 @@ public class Cliente {
     @Column(name = "id_cliente")
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Preencha o nome do cliente")
+    @Size(max = 60, min = 2, message = "Tamanho do campo invalido")
     @Column(nullable = false, length = 60)
     private String nome;
 
+    @NotBlank(message = "Preencha o cpf do cliente")
+    @Size(min = 11, max = 11, message = "Tamanho do campo invalido")
     @Column(nullable = false, length = 11)
     private String cpf;
 
+    @NotBlank(message = "Preencha o email do cliente")
+    @Size(max = 50, message = "Tamanho do campo invalido")
     @Column(nullable = false, length = 50)
     private String email;
 
+    @NotBlank(message = "Preencha o data de nascimento do cliente")
     @Column(nullable = false, name = "data_nascimento")
     private LocalDate dataNascimento;
 
