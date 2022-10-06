@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,7 +24,17 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
             erros.add(erro.getField() + ":" + erro.getDefaultMessage());
         }
         ErroResposta erroResposta = new ErroResposta(status.value(),
-                "Existem campos invalidos. Confira o preenchimento", LocalDateTime.now(), erros);
+                "Existem campos inválidos. Confira o preenchimento", LocalDateTime.now(), erros);
+
+        return super.handleExceptionInternal(ex, erroResposta, headers, status, request);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
+            HttpHeaders headers, HttpStatus status, WebRequest request) {
+                
+                ErroResposta erroResposta = new ErroResposta(status.value(),
+                "Existem atributos não conhecidos. Confira o preenchimento", LocalDateTime.now(), null);
 
         return super.handleExceptionInternal(ex, erroResposta, headers, status, request);
     }
