@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -37,7 +36,6 @@ public class Cliente {
     @Column(nullable = false, length = 50)
     private String email;
 
-    @Future(message = "Você inseriu uma data invalida")
     @Column(nullable = false, name = "data_nascimento")
     private LocalDate dataNascimento;
 
