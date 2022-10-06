@@ -42,13 +42,13 @@ public class ClienteController {
         }
     }
 
-    @PostMapping(value = "/createAll")
+    @PostMapping(value = "/create")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Cliente create(@RequestBody Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
-    @PostMapping(value = "/create")
+    @PostMapping(value = "/createAll")
     @ResponseStatus(code = HttpStatus.CREATED)
     public List<Cliente> createTodos(@RequestBody List<Cliente> clientes) {
         return clienteRepository.saveAll(clientes);
