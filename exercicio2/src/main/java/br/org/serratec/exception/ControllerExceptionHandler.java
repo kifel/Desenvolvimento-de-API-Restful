@@ -32,8 +32,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
             HttpHeaders headers, HttpStatus status, WebRequest request) {
-                
-                ErroResposta erroResposta = new ErroResposta(status.value(),
+
+        ErroResposta erroResposta = new ErroResposta(status.value(),
                 "Existem atributos não conhecidos. Confira o preenchimento", LocalDateTime.now(), null);
 
         return super.handleExceptionInternal(ex, erroResposta, headers, status, request);
