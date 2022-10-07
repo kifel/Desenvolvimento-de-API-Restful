@@ -30,4 +30,6 @@ public class Veiculo {
     @Size(max = 40)
     @Column(nullable = false, length = 40)
     private String modelo;
+
+    private Caracteristica caracteristica;
 }
