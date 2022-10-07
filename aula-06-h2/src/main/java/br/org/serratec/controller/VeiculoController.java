@@ -20,7 +20,7 @@ public class VeiculoController {
     @Autowired
     private VeiculoRepository veiculoRepository;
 
-    @PostMapping(value = "create")
+    @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Veiculo create(@Valid @RequestBody Veiculo veiculo) {
         return veiculoRepository.save(veiculo);
