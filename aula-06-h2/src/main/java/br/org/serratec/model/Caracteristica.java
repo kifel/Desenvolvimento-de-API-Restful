@@ -10,4 +10,35 @@ public class Caracteristica {
 
     private Categoria categoria;
     private Combustivel Combustivel;
+    
+    public String getRenavam() {
+        return renavam;
+    }
+    public void setRenavam(String renavam) {
+        this.renavam = renavam;
+    }
+    public String getChassi() {
+        return chassi;
+    }
+    public void setChassi(String chassi) {
+        this.chassi = chassi;
+    }
+    public Integer getAno() {
+        return ano;
+    }
+    public void setAno(Integer ano) {
+        this.ano = ano;
+    }
+    public Categoria getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+    public Combustivel getCombustivel() {
+        return Combustivel;
+    }
+    public void setCombustivel(Combustivel combustivel) {
+        Combustivel = combustivel;
+    }
 }
