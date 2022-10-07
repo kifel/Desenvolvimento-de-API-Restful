@@ -1,16 +1,24 @@
 package br.org.serratec.model;
 
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import br.org.serratec.enums.Categoria;
 import br.org.serratec.enums.Combustivel;
 
+@Embeddable
 public class Caracteristica {
     private String renavam;
     private String chassi;
     private Integer ano;
 
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
+
+    @Enumerated(EnumType.ORDINAL)
     private Combustivel Combustivel;
-    
+
     public String getRenavam() {
         return renavam;
     }
