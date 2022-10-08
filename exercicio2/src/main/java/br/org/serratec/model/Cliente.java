@@ -3,6 +3,7 @@ package br.org.serratec.model;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,6 +39,9 @@ public class Cliente {
 
     @Column(nullable = false, name = "data_nascimento")
     private LocalDate dataNascimento;
+
+    @Embedded
+    private Endereco endereco;
 
     public Long getId() {
         return id;
@@ -79,10 +83,18 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
     public String toString() {
         return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", dataNascimento="
-                + dataNascimento + "]";
+                + dataNascimento + ", endereco=" + endereco + "]";
     }
 
 }
