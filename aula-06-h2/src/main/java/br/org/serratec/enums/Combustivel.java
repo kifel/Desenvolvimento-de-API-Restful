@@ -32,9 +32,9 @@ public enum Combustivel {
     }
 
     @JsonCreator
-    public static Combustivel verifica(String valor) throws EnumValidationException {
+    public static Combustivel verifica(Integer valor) throws EnumValidationException {
         for (Combustivel combustivel : Combustivel.values()) {
-            if (valor.equals(combustivel.name())) {
+            if (valor.equals(combustivel.getCodigo())) {
                 return combustivel;
             }
         }
