@@ -32,5 +32,9 @@ public class Proprietario {
         this.nome = nome;
     }
 
+    @Override
+    public String toString() {
+        return "Veiculo [id=" + id + ", nome=" + nome + "]";
+    }
 
 }

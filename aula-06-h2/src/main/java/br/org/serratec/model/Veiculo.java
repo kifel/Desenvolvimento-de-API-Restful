@@ -41,7 +41,6 @@ public class Veiculo {
     @JoinColumn(name = "id_proprietario")
     private Proprietario proprietario;
 
-
     public Long getId() {
         return id;
     }
@@ -88,5 +87,11 @@ public class Veiculo {
 
     public void setProprietario(Proprietario proprietario) {
         this.proprietario = proprietario;
+    }
+
+    @Override
+    public String toString() {
+        return "Veiculo [id=" + id + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo
+                + ", caracteristica=" + caracteristica + ", proprietario=" + proprietario + "]";
     }
 }
