@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -34,6 +36,11 @@ public class Veiculo {
 
     @Embedded
     private Caracteristica caracteristica;
+
+    @OneToOne
+    @JoinColumn(name = "id_proprietario")
+    private Proprietario proprietario;
+
 
     public Long getId() {
         return id;
@@ -73,5 +80,13 @@ public class Veiculo {
 
     public void setCaracteristica(Caracteristica caracteristica) {
         this.caracteristica = caracteristica;
+    }
+
+    public Proprietario getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(Proprietario proprietario) {
+        this.proprietario = proprietario;
     }
 }
