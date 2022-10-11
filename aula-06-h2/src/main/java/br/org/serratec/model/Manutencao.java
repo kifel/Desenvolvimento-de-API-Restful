@@ -40,7 +40,7 @@ public class Manutencao {
     @JoinTable(name = "manutencao_servico", 
     joinColumns = @JoinColumn(name = "id_manutencao"), 
     inverseJoinColumns = @JoinColumn(name = "id_servico"))
-    private List<Servico> servições;
+    private List<Servico> servicos;
 
     public Long getId() {
         return id;
@@ -82,11 +82,11 @@ public class Manutencao {
         this.veiculo = veiculo;
     }
 
-    public List<Servico> getServições() {
-        return servições;
+    public List<Servico> getServicos() {
+        return servicos;
     }
 
-    public void setServições(List<Servico> servições) {
-        this.servições = servições;
+    public void setServições(List<Servico> servicos) {
+        this.servicos = servicos;
     }
 }
