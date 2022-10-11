@@ -1,5 +1,8 @@
 package br.org.serratec.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PessoaFisica extends Fornecedor {
 
     private Long id;
