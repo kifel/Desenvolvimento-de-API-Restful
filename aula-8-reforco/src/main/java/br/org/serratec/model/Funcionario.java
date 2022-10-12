@@ -7,6 +7,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
 @MappedSuperclass
 public class Funcionario {
     
@@ -21,7 +24,8 @@ public class Funcionario {
     protected Double salario;
 
     protected String turno;
-
+  
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name= "id_departamento")
     protected Departamento departamento;
