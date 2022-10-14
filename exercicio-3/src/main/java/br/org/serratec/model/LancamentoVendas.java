@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -25,8 +26,12 @@ public class LancamentoVendas {
     @Column(name = "codigo_venda")
     private Long codigoVenda;
 
-    @Column(name = "data_venda")
+    @NotNull(message = "Você deve inserir uma data correta")
+    @Column(name = "data_venda", nullable = false)
     private LocalDate dataVenda;
+
+    @NotNull(message = "Você deve inserir um valor valido")
+    private Double valor;
 
     @JsonBackReference
     @ManyToOne
