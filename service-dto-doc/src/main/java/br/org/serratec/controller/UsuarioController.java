@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.org.serratec.dto.UsuarioDTO;
+import br.org.serratec.dto.UsuarioInserirDTO;
 import br.org.serratec.exception.EmailException;
-import br.org.serratec.model.Usuario;
 import br.org.serratec.service.UsuarioService;
 
 @RestController
@@ -30,11 +30,11 @@ public class UsuarioController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> inserir(@RequestBody Usuario u) {
+    public ResponseEntity<Object> inserir(@RequestBody UsuarioInserirDTO u) {
         try {
-            usuarioService.inserir(u);
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(u.getId()).toUri();
-            return ResponseEntity.created(uri).body(u);
+             UsuarioDTO usuarioDTO = usuarioService.inserir(u);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuarioDTO.getId()).toUri();
+            return ResponseEntity.created(uri).body(usuarioDTO);
         }catch (EmailException e) {
             return ResponseEntity.unprocessableEntity().body(e.getMessage());
         }

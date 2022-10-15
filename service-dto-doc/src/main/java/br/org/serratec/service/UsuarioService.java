@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.org.serratec.dto.UsuarioDTO;
+import br.org.serratec.dto.UsuarioInserirDTO;
 import br.org.serratec.exception.EmailException;
 import br.org.serratec.model.Usuario;
 import br.org.serratec.repository.UsuarioRepository;
@@ -35,12 +36,16 @@ public class UsuarioService {
         // UsuarioDTO(usuario)).collect(Collectors.toList());
     }
 
-    public Usuario inserir(Usuario u) {
-        Usuario usuario = usuarioRepository.findByEmail(u.getEmail());
-        if (usuario != null) {
+    public UsuarioDTO inserir(UsuarioInserirDTO u) {
+        if (usuarioRepository.findByEmail(u.getEmail()) != null) {
             throw new EmailException("Email já Existe na base");
         }
-        u.setSenha(bCryptPasswordEncoder.encode(u.getSenha()));
-        return usuarioRepository.save(u);
+        Usuario usuario = new Usuario();
+        usuario.setNome(u.getNome());
+        usuario.setEmail(u.getEmail());
+        usuario.setSenha(bCryptPasswordEncoder.encode(u.getSenha()));
+        usuario = usuarioRepository.save(usuario);
+
+        return new UsuarioDTO(usuario);
     }
 }
