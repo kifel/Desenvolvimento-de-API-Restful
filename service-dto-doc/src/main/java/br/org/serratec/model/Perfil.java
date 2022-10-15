@@ -5,7 +5,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,19 +16,14 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class Usuario {
-    
+public class Perfil {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
+    @Column(name = "id_perfil")
     private Long id;
-
     private String nome;
 
-    private String email;
-
-    private String senha;
-
-    @OneToMany(mappedBy = "id.usuario", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "id.perfil")
     private Set<UsuarioPerfil> usuariosPerfil = new HashSet<>();
 }
