@@ -19,3 +19,21 @@ CREATE TABLE
         data_criacao DATE,
         CONSTRAINT pk_usuario_perfil PRIMARY KEY (id_usuario, id_perfil)
     );
+
+CREATE TABLE
+    IF NOT EXISTS public.endereco(
+        id_endereco serial PRIMARY KEY,
+        cep varchar(10),
+        logradouro varchar(50),
+        complemento varchar(30),
+        bairro varchar(40),
+        localidade varchar(40),
+        uf varchar(2),
+        ibge int
+    );
+
+ALTER TABLE usuario
+ADD COLUMN id_endereco bigint,
+ADD
+    CONSTRAINT fk_id_endereco FOREIGN KEY (id_endereco) REFERENCES endereco(id_endereco);
+
