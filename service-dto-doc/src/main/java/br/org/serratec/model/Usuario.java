@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Entity
 public class Usuario {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
@@ -32,4 +32,10 @@ public class Usuario {
 
     @OneToMany(mappedBy = "id.usuario", fetch = FetchType.EAGER)
     private Set<UsuarioPerfil> usuariosPerfil = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Id: " + id + "\n Nome:" + nome + "\n Email:" + email;
+    }
+
 }
