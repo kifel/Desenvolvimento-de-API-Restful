@@ -19,7 +19,7 @@ public class EnderecoService {
     private EnderecoRepository enderecoRepository;
 
     public EnderecoDTO buscar(String cep) {
-        Optional<Endereco> endereco = enderecoRepository.findByCep(cep);
+        Optional<Endereco> endereco = Optional.ofNullable(enderecoRepository.findByCep(cep));
 
         if (endereco.isPresent()) {
             return new EnderecoDTO(endereco.get());
