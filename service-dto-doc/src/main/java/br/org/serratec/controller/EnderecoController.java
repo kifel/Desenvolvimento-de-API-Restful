@@ -1,4 +1,4 @@
-package br.org.serratec.config;
+package br.org.serratec.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
