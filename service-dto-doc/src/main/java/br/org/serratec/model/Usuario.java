@@ -35,7 +35,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Id: " + id + "\n Nome:" + nome + "\n Email:" + email;
+        return "Id: " + id + "\n Nome: " + nome + "\n Email: " + email;
     }
 
 }
