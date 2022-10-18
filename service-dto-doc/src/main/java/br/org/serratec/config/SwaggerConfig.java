@@ -3,6 +3,8 @@ package br.org.serratec.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import br.org.serratec.model.Perfil;
+import br.org.serratec.model.Usuario;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -20,6 +22,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("br.org.serratec.controller"))
                 .paths(PathSelectors.any())
                 .build()
+                .ignoredParameterTypes(Usuario.class, Perfil.class)
                 .apiInfo(apiInfo());
     }
 
