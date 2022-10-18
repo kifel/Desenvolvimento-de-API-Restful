@@ -19,6 +19,4 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleHttpClientErrorException(HttpClientErrorException ex) {
         return ResponseEntity.unprocessableEntity().body("Cep Inválido");
     }
-
-
 }
