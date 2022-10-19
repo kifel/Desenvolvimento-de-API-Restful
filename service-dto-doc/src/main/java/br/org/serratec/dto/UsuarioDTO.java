@@ -12,6 +12,7 @@ public class UsuarioDTO {
     private Long id;
     private String nome;
     private String email;
+    private String uri;
 
     public UsuarioDTO(Usuario usuario) {
         this.id = usuario.getId();
