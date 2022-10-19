@@ -1,5 +1,7 @@
 package br.org.serratec.service;
 
+import java.io.IOException;
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.org.serratec.config.MailConfig;
 import br.org.serratec.dto.UsuarioDTO;
@@ -28,6 +32,9 @@ public class UsuarioService {
 
     @Autowired
     private PerfilService perfilService;
+    
+    @Autowired
+    private FotoService fotoService;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -35,12 +42,24 @@ public class UsuarioService {
     @Autowired
     private MailConfig mailConfig;
 
+    private UsuarioDTO inserirUriImagem(Usuario usuario) {
+        URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/usuarios/{id}/foto")
+                .buildAndExpand(usuario.getId()).toUri();
+
+        UsuarioDTO dto = new UsuarioDTO();
+        dto.setNome(usuario.getNome());
+        dto.setEmail(usuario.getEmail());
+        dto.setUri(uri.toString());
+
+        return dto;
+    }
+
     public List<UsuarioDTO> listar() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         List<UsuarioDTO> usuariosDTO = new ArrayList<>();
 
         for (Usuario usuario : usuarios) {
-            usuariosDTO.add(new UsuarioDTO(usuario));
+            usuariosDTO.add(inserirUriImagem(usuario));
         }
 
         return usuariosDTO;
@@ -49,7 +68,7 @@ public class UsuarioService {
         // UsuarioDTO(usuario)).collect(Collectors.toList());
     }
 
-    public UsuarioDTO inserir(UsuarioInserirDTO u) {
+    public UsuarioDTO inserir(UsuarioInserirDTO u, MultipartFile file) throws IOException {
         if (usuarioRepository.findByEmail(u.getEmail()) != null) {
             throw new EmailException("Email já Existe na base");
         }
@@ -58,7 +77,7 @@ public class UsuarioService {
         usuario.setNome(u.getNome());
         usuario.setEmail(u.getEmail());
         usuario.setSenha(bCryptPasswordEncoder.encode(u.getSenha()));
-        usuario = usuarioRepository.save(usuario);
+        fotoService.inserir(usuarioRepository.save(usuario), file);
 
         for (UsuarioPerfil up : u.getUsuariosPerfil()) {
             up.setUsuario(usuario);
@@ -68,8 +87,8 @@ public class UsuarioService {
 
         usuarioPerfilRepository.saveAll(u.getUsuariosPerfil());
 
-        mailConfig.sendEmail(u.getEmail(), "Cadastro de Usuário", usuario.toString());
+        // mailConfig.sendEmail(u.getEmail(), "Cadastro de Usuário", usuario.toString());
 
-        return new UsuarioDTO(usuario);
+        return inserirUriImagem(usuario);
     }
 }
