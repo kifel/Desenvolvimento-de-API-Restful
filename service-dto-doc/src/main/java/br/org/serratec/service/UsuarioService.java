@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.org.serratec.config.MailConfig;
 import br.org.serratec.dto.UsuarioDTO;
 import br.org.serratec.dto.UsuarioInserirDTO;
 import br.org.serratec.exception.EmailException;
@@ -39,8 +38,8 @@ public class UsuarioService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
-    private MailConfig mailConfig;
+    // @Autowired
+    // private MailConfig mailConfig;
 
     private UsuarioDTO inserirUriImagem(Usuario usuario) {
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/usuarios/{id}/foto")
