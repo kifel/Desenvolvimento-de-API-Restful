@@ -46,6 +46,7 @@ public class UsuarioService {
                 .buildAndExpand(usuario.getId()).toUri();
 
         UsuarioDTO dto = new UsuarioDTO();
+        dto.setId(usuario.getId());
         dto.setNome(usuario.getNome());
         dto.setEmail(usuario.getEmail());
         dto.setUri(uri.toString());
