@@ -39,9 +39,14 @@ public class VendedorController {
     }
 
     @GetMapping("/salario")
-    public ResponseEntity<Page<Vendedor>> buscarPorFaixaSalarial(@RequestParam Double valorMinimo,
+    public ResponseEntity<Page<Vendedor>> buscarPorFaixaSalarial(@RequestParam (defaultValue = "0") Double valorMinimo,
             @RequestParam Double valorMaximo, Pageable pageable) {
-        return ResponseEntity.ok(vendedorRepository.buscarPorFaixaSalarial(valorMinimo, valorMaximo, pageable));
+        return ResponseEntity.ok(vendedorRepository.findBySalarioBetween(valorMinimo, valorMaximo, pageable));
+    }
+
+    @GetMapping("/pessoa")
+    public ResponseEntity<Page<Vendedor>> buscarPorFaixaSalarial(@RequestParam (defaultValue = "0") String nome, Pageable pageable) {
+        return ResponseEntity.ok(vendedorRepository.findByNomeStartingWithIgnoreCase(nome, pageable));
     }
 
 }
